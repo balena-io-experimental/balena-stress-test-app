@@ -1,0 +1,31 @@
+version: '2'
+volumes:
+  resin-data:
+services:
+  stress:
+    build:
+      context: ./stress-ng
+      dockerfile: Dockerfile
+    volumes:
+      - 'resin-data:/data'
+    restart: no
+    labels:
+      io.balena.features.procfs: '1'
+      io.balena.features.sysfs: '1'
+    privileged: true
+    command: [ "--cpu", "2", "--sync-file", "1", "--cache", "1", "--vm" , "2" ]
+      
+  iperf:
+    build:
+      context: ./iperf3
+      dockerfile: Dockerfile
+    volumes:
+      - 'resin-data:/data'
+    restart: no
+    labels:
+      io.balena.features.procfs: '1'
+      io.balena.features.sysfs: '1'
+    privileged: true
+    network_mode: host
+    command: [ "-s" ]
+
