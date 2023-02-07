@@ -16,8 +16,10 @@ WORKDIR /code/stress-ng
 RUN STATIC=1 make
 
 # Final image
-FROM scratch
+FROM debian:buster-slim
 
+COPY start.sh /start.sh
+RUN chmod 700 /start.sh
 COPY --from=builder /code/stress-ng/stress-ng /
 
-ENTRYPOINT ["/stress-ng"]
+ENTRYPOINT ["/start.sh"]

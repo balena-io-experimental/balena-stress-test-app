@@ -13,7 +13,6 @@ services:
       io.balena.features.procfs: '1'
       io.balena.features.sysfs: '1'
     privileged: true
-    command: [ "--cpu", "2", "--sync-file", "1", "--cache", "1", "--vm" , "2" ]
       
   iperf:
     build:
