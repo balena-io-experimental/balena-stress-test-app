@@ -17,7 +17,7 @@ services:
       
   iperf:
     build:
-      context: ./iperf3
+      context: ./iperf32
       dockerfile: Dockerfile
     volumes:
       - 'resin-data:/data'
@@ -27,5 +27,3 @@ services:
       io.balena.features.sysfs: '1'
     privileged: true
     network_mode: host
-    command: [ "-s" ]
-
